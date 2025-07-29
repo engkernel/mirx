@@ -1,11 +1,12 @@
 # mirx
 
 # Rust Microkernel Implementation Checklist
-
+For the first steps after boot, vga for logging and debuging is most needed feature for a kernel.
 ## 1. Bootstrapping & Initialization
 <!-- - [ ] Setup entry point & bootloader interface -->
 <!-- - [ ] Switch CPU to protected mode / long mode -->
 (I used ready to use bootloader just to get around of bootloader)
+- [ ] simple vga printing
 - [ ] Detect memory map / implement physical memory manager (frame allocator)
 - [ ] Initialize early kernel environment (stack, heap setup)
 
