@@ -6,14 +6,14 @@ use core::panic::PanicInfo;
 
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
+    panic!("{}", _info);
     loop {}
 }
 
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
-    // info!();
+    info!("This is info {}", 46);
     debug!("This is {}", 46);
-    // err!();
-    // panic!();
-    loop {}
+    error!("This is error {}", 34);
+    panic!("This is panic {}!!", 23);
 }
