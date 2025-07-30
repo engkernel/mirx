@@ -7,7 +7,6 @@ use core::panic::PanicInfo;
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
     panic!("{}", _info);
-    loop {}
 }
 
 #[unsafe(no_mangle)]

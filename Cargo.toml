@@ -8,9 +8,21 @@ panic = "abort"
 
 [profile.release]
 panic = "abort"
+# added to test
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+
 
 [dependencies]
 bootloader = "0.9"
-lazy_static = { version = "1.5.0", features = ["spin_no_std"]}
+lazy_static = { version = "1.5.0", features = ["spin_no_std"] }
 spin = "0.10.0"
 volatile = "0.6.1"
+
+
+[package.metadata.bootimage]
+# The cargo subcommand that will be used for building the kernel.
+# For building using the `cargo-xbuild` crate, set this to `xbuild`.
+build-command = ["build"]
