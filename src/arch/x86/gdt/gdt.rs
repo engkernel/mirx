@@ -30,27 +30,6 @@ impl SegmentDescriptor {
     }
 }
 
-impl fmt::Debug for SegmentDescriptor {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        // Decode limit
-        let limit = ((self.flags_limit.0 as u32 & 0x0F) << 16) | self.limit_low as u32;
-        // Decode base
-        let base = (self.base_high as u32) << 24
-            | (self.base_middle as u32) << 16
-            | (self.base_low as u32);
-        // Decode access_byte bits
-        let access = self.access_byte.0;
-        let flags = self.flags_limit.0;
-
-        f.debug_struct("SegmentDescriptor")
-            .field("Base", &format_args!("{:#010X}", base))
-            .field("Limit", &format_args!("{:#X}", limit))
-            .field("AccessByte", &self.access_byte)
-            .field("Flags+Limit", &self.flags_limit)
-            .field("  Limit High (4 bits)", &(flags & 0x0F))
-            .finish()
-    }
-}
 
 #[repr(C, packed)]
 pub struct TSSDescriptor {
@@ -227,4 +206,28 @@ pub fn gdt_init() {
     let gdtr = GDTR::new(gdt);
 
     load_gdt(&gdtr);
+}
+
+
+
+impl fmt::Debug for SegmentDescriptor {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        // Decode limit
+        let limit = ((self.flags_limit.0 as u32 & 0x0F) << 16) | self.limit_low as u32;
+        // Decode base
+        let base = (self.base_high as u32) << 24
+            | (self.base_middle as u32) << 16
+            | (self.base_low as u32);
+        // Decode access_byte bits
+        let access = self.access_byte.0;
+        let flags = self.flags_limit.0;
+
+        f.debug_struct("SegmentDescriptor")
+            .field("Base", &format_args!("{:#010X}", base))
+            .field("Limit", &format_args!("{:#X}", limit))
+            .field("AccessByte", &self.access_byte)
+            .field("Flags+Limit", &self.flags_limit)
+            .field("  Limit High (4 bits)", &(flags & 0x0F))
+            .finish()
+    }
 }

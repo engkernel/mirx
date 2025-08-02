@@ -1,6 +1,6 @@
-use crate::arch::x86::{gdt::gdt::gdt_init, idt::idt};
+use crate::arch::x86::{gdt::gdt::gdt_init, idt::interrupt};
 
 pub fn x86_init() {
-    idt::disable_interrupts();
+    interrupt::disable_interrupts();
     gdt_init();
 }
