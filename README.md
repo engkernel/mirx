@@ -1,7 +1,7 @@
 # mirx
 
 # Rust Microkernel Implementation Checklist
-For the first steps after boot, vga for logging and debuging is most needed feature for a kernel.
+GDT struct implemented but tss. i would like to take time on that. working on implementation of idt.
 ## 1. Bootstrapping & Initialization
 <!-- - [ ] Setup entry point & bootloader interface -->
 <!-- - [ ] Switch CPU to protected mode / long mode -->

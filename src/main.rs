@@ -2,7 +2,11 @@
 #![no_main]
 
 mod utils;
+mod arch;
 use core::panic::PanicInfo;
+use bootloader::BootInfo;
+
+use crate::arch::x86::{self, kernel::init};
 
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
@@ -10,9 +14,7 @@ fn panic(_info: &PanicInfo) -> ! {
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn _start() -> ! {
-    info!("This is info {}", 46);
-    debug!("This is {}", 46);
-    error!("This is error {}", 34);
-    panic!("This is panic {}!!", 23);
+pub extern "C" fn _start(boot_info: &'static BootInfo) -> ! {
+    init::x86_init();
+    loop{};
 }

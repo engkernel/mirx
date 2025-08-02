@@ -7,7 +7,7 @@ unsafe impl Sync for VGABuf {}
 
 const VGA_ADDRESS: *mut u8 = 0xb8000 as *mut u8;
 const SCREEN_WIDTH: usize = 80;
-const SCREEN_HEIGHT: usize = 40;
+const SCREEN_HEIGHT: usize = 140;
 const SCREEN_X_START: usize = 0;
 const SCREEN_Y_START: usize = 0;
 

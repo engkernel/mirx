@@ -38,15 +38,15 @@ macro_rules! log {
 #[macro_export]
 macro_rules! debug {
     () => {
-        crate::utils::log::log!($crate::utils::log::LogLevel::Debug, "\n")
+        $crate::log!($crate::utils::log::LogLevel::Debug, "\n")
     };
-    ($($arg:tt)*) => {{ log!($crate::utils::log::LogLevel::Debug, $($arg)*)}};
+    ($($arg:tt)*) => {{ $crate::log!($crate::utils::log::LogLevel::Debug, $($arg)*)}};
 }
 
 #[macro_export]
 macro_rules! info {
     () => {
-        crate::utils::log::log!($crate::utils::log::LogLevel::Info, "\n")
+        log!($crate::utils::log::LogLevel::Info, "\n")
     };
     ($($arg:tt)*) => {{ log!($crate::utils::log::LogLevel::Info, $($arg)*)}};
 }
@@ -54,7 +54,7 @@ macro_rules! info {
 #[macro_export]
 macro_rules! error {
     () => {
-        crate::utils::log::log!($crate::utils::log::LogLevel::Error, "\n")
+        log!($crate::utils::log::LogLevel::Error, "\n")
     };
     ($($arg:tt)*) => {{ log!($crate::utils::log::LogLevel::Error, $($arg)*)}};
 }
@@ -62,7 +62,7 @@ macro_rules! error {
 #[macro_export]
 macro_rules! panic {
     () => {
-        crate::utils::log::log!($crate::utils::log::LogLevel::Panic, "\n")
+        log!($crate::utils::log::LogLevel::Panic, "\n")
     };
     ($($arg:tt)*) => {{ 
         log!($crate::utils::log::LogLevel::Panic, $($arg)*);
