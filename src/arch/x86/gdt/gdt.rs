@@ -5,7 +5,6 @@ use super::access_byte::{
 
 use super::flags_limit::{FlagsLimitBuilder, FlagsLimitByte, Granularity, LongMode, OperandSize};
 use core::{arch::asm, fmt};
-use crate::utils::log;
 
 #[repr(C, packed)]
 pub struct SegmentDescriptor {
@@ -79,8 +78,7 @@ impl GDTR {
     pub fn new(gdt: GlobalDescriptorTable) -> Self {
         let gdtr_base = &gdt as *const _ as u64;
 
-        let gdt_size = core::mem::size_of::<GlobalDescriptorTable>();
-        let gdtr_limit = (gdt_size - 1) as u16;
+        let gdtr_limit = (core::mem::size_of::<GlobalDescriptorTable>()) as u16 -1;
 
         Self {
             limit: gdtr_limit,
